@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="bookDao" name="dao,bookDao1" class="com.demo1.dao.impl.BookDaoImpl"/>
+
+    <bean id="bookService" name="service,bookService1" class="com.demo1.service.impl.BookServiceImpl" scope="prototype">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+
+    <!--静态-->
+    <bean id="bookDaoFactory_static" class="com.demo1.dao.BookDaoFactory" factory-method="getBookDao"/>
+
+    <!--非静态-->
+    <bean id="bookDaoFactory" class="com.demo1.dao.BookDaoFactory"/>
+    <bean id="bookDaoFactory_1" factory-bean="bookDaoFactory" factory-method="getBookDao1"/>
+
+
+
+</beans>
